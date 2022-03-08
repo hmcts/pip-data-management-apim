@@ -2,36 +2,39 @@
   "openapi": "3.0.1",
   "info": {
     "title": "pip-data-management-health-api",
-      "description": "Publication and Information Data Management APIM API",
-      "version": "1.0"
+    "description": "Publication and Information Data Management APIM API",
+    "version": "1.0"
   },
-  "servers":[{
-    "url": "http://sds-api-mgmt-sbox.azure-api.net/pip-data-management-health"
-}, {
-    "url": "https://sds-api-mgmt-sbox.azure-api.net/pip-data-management-health"
-}],
+  "servers": [
+    {
+      "url": "http://sds-api-mgmt-sbox.azure-api.net/pip-data-management-health"
+    },
+    {
+      "url": "https://sds-api-mgmt-sbox.azure-api.net/pip-data-management-health"
+    }
+  ],
   "paths": {
-      "/publications": {
-          "get": {
-              "tags": [
-                  "publications"
-              ],
-              "summary": "Get Publications by Court ID",
-              "description": "Get Publications by Court ID",
-              "operationId": "get-publications-by-court-id",
-              "responses": {
-                  "200": {
-                      "description": "null"
-                  }
-              }
+    "/publications": {
+      "get": {
+        "tags": [
+          "publications"
+        ],
+        "summary": "Get Publications by Court ID",
+        "description": "Get Publications by Court ID",
+        "operationId": "get-publications-by-court-id",
+        "responses": {
+          "200": {
+            "description": "null"
           }
-                }
+        }
+      }
+    }
   },
   "components": {},
   "tags": [
-      {
-          "name": "publications",
-          "description": "Publications endpoints"
-      }
+    {
+      "name": "publications",
+      "description": "Publications endpoints"
+    }
   ]
 }

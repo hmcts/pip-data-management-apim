@@ -1,12 +1,12 @@
 locals {
-  api_operatons_root_path           = "./resources/operation-policies"
-  api_operations_json = jsondecode(file("${local.api_operatons_root_path}/policies.json"))
+  api_operatons_root_path = "./resources/operation-policies"
+  api_operations_json     = jsondecode(file("${local.api_operatons_root_path}/policies.json"))
   api_operations = flatten([for v in local.api_operations_json.policies : {
     "operation_id" = v.operationId,
     "xml_content"  = file("${local.api_operatons_root_path}/${v.templateFile}")
   }])
-  
-  env       = (var.env == "aat") ? "stg" : (var.env == "sandbox") ? "sbox" : "${(var.env == "perftest") ? "test" : "${var.env}"}"
+
+  env = (var.env == "aat") ? "stg" : (var.env == "sandbox") ? "sbox" : "${(var.env == "perftest") ? "test" : "${var.env}"}"
 
   apim_name = "sds-api-mgmt-${local.env}"
   apim_rg   = "ss-${local.env}-network-rg"
@@ -45,7 +45,7 @@ module "apim_api_policy" {
 }
 
 resource "azurerm_api_management_api_operation_policy" "apim_api_operation_policy" {
-  for_each      = { for operation in local.api_operations : operation.operation_id => operation }
+  for_each            = { for operation in local.api_operations : operation.operation_id => operation }
   operation_id        = each.value.operation_id
   api_name            = local.api_name
   api_management_name = local.apim_name
