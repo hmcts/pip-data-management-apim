@@ -20,7 +20,9 @@ The policies for the Operations are located `resources\operation-policies`
 These policies will affect all of the actions for the Data Management API Operations.
 
 ### Add new Policy
-To add a new policy, create the new XML file within the source location.
+To add a new policy, create the new XML file within the source location with the name of the Operation ID.
+This should be the Operation ID set in the Swagger Definition and the new file name.
+
 The content should start by looking like this:
 ```XML
 <policies>
@@ -38,9 +40,6 @@ The content should start by looking like this:
     </on-error>
 </policies>
 ```
-
-You will then need to edit the `policies.json` file and add to the array a new item.
-This should contain the Operation ID set in the Swagger Definition and the new file name.
 
 ## Testing
 

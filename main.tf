@@ -1,10 +1,12 @@
 locals {
-  api_operatons_root_path = "./resources/operation-policies"
-  api_operations_json     = jsondecode(file("${local.api_operatons_root_path}/policies.json"))
-  api_operations = flatten([for v in local.api_operations_json.policies : {
-    "operation_id" = v.operationId,
-    "xml_content"  = file("${local.api_operatons_root_path}/${v.templateFile}")
-  }])
+  api_operations_files = fileset(path.module, "./resources/operation-policies/*.xml")
+  api_operations = {
+    for api_operations_file in local.api_operations_files :
+    basename(api_operations_file) => {
+      operation_id = replace(basename(api_operations_file), ".xml", "")
+      xml_content  = file("${path.module}/${api_operations_file}")
+    }
+  }
 
   env = (var.env == "aat") ? "stg" : (var.env == "sandbox") ? "sbox" : "${(var.env == "perftest") ? "test" : "${var.env}"}"
 
@@ -27,7 +29,7 @@ module "apim_api" {
   api_mgmt_rg    = local.apim_rg
   display_name   = local.api_name
   name           = local.api_name
-  path           = var.product
+  path           = "${var.product}/data-management"
   product_id     = data.azurerm_api_management_product.apim_product.product_id
   protocols      = ["https"]
   revision       = "1"
