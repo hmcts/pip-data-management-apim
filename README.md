@@ -9,8 +9,6 @@ The API and the Operations are deployed using Swagger/Open API importing.
 
 Any new Operation for the API should be added to the Swagger definition `resources\swagger\api-swagger.json`
 
-Any new health probe operation should be added to the Swagger definition `resources\swagger\health-probe-swagger.json`
-
 ## API Policies
 
 The policies for the APIs are located `resources\api-policy`

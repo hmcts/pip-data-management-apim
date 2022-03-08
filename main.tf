@@ -1,15 +1,17 @@
 locals {
-  root_path           = "./infrastructure/template"
-  api_operations_json = jsondecode(file("${local.root_path}/policies.json"))
+  api_operatons_root_path           = "./resources/operation-policies"
+  api_operations_json = jsondecode(file("${local.api_operatons_root_path}/policies.json"))
   api_operations = flatten([for v in local.api_operations_json.policies : {
     "operation_id" = v.operationId,
-    "xml_content"  = file("${local.root_path}/${v.templateFile}")
+    "xml_content"  = file("${local.api_operatons_root_path}/${v.templateFile}")
   }])
+  
   env       = (var.env == "aat") ? "stg" : (var.env == "sandbox") ? "sbox" : "${(var.env == "perftest") ? "test" : "${var.env}"}"
+
   apim_name = "sds-api-mgmt-${local.env}"
   apim_rg   = "ss-${local.env}-network-rg"
 
-  api_name = "${var.product}-publication-service-api"
+  api_name = "${var.product}-data-management-api"
 }
 
 data "azurerm_api_management_product" "apim_product" {
@@ -26,12 +28,12 @@ module "apim_api" {
   display_name   = local.api_name
   name           = local.api_name
   path           = var.product
-  product_id     = ""#data.azurerm_api_management_product.apim_product.product_id
+  product_id     = data.azurerm_api_management_product.apim_product.product_id
   protocols      = ["https"]
   revision       = "1"
   service_url    = var.service_url
-  swagger_url    = var.open_api_spec_content_value
-  content_format = var.open_api_spec_content_format
+  swagger_url    = file("./resources/swagger/api-swagger.json")
+  content_format = "swagger-json"
 }
 
 module "apim_api_policy" {
@@ -39,7 +41,7 @@ module "apim_api_policy" {
   api_mgmt_name          = local.apim_name
   api_mgmt_rg            = local.apim_rg
   api_name               = local.api_name
-  api_policy_xml_content = file("${local.root_path}/api-policy.xml")
+  api_policy_xml_content = file("./resources/api-policy/api-policy.xml")
 }
 
 resource "azurerm_api_management_api_operation_policy" "apim_api_operation_policy" {

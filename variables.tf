@@ -30,18 +30,3 @@ variable "service_url" {
   description = "Service URL"
   default     = ""
 }
-variable "open_api_spec_content_format" {
-  type        = string
-  description = "Open API Spec Content Format"
-  default     = "openapi-link"
-}
-variable "open_api_spec_content_value" {
-  type        = string
-  description = "Open API Spec Content value"
-  default     = "https://raw.githubusercontent.com/hmcts/reform-api-docs/master/docs/specs/pip-gateway-api.json"
-}
-variable "enable_mock_header_string" {
-  type        = string
-  description = ""
-  default     = "<set-header name=\"_EnableMocks\" exists-action=\"override\"><value>true</value></set-header>"
-}
