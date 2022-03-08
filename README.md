@@ -5,10 +5,48 @@ This is the configuration for setting up the Publication and Information Data Ma
 
 ## Swagger
 
+The API and the Operations are deployed using Swagger/Open API importing.
+
+Any new Operation for the API should be added to the Swagger definition `resources\swagger\api-swagger.json`
+
+Any new health probe operation should be added to the Swagger definition `resources\swagger\health-probe-swagger.json`
+
+## API Policies
+
+The policies for the APIs are located `resources\api-policy`
+These policies will affect all of the actions for the Data Management API.
 
 ## Operation Policies
 
+The policies for the Operations are located `resources\operation-policies`
+These policies will affect all of the actions for the Data Management API Operations.
 
+### Add new Policy
+To add a new policy, create the new XML file within the source location.
+The content should start by looking like this:
+```XML
+<policies>
+    <inbound>
+        <base />
+    </inbound>
+    <backend>
+        <base />
+    </backend>
+    <outbound>
+        <base />
+    </outbound>
+    <on-error>
+        <base />
+    </on-error>
+</policies>
+```
+
+You will then need to edit the `policies.json` file and add to the array a new item.
+This should contain the Operation ID set in the Swagger Definition and the new file name.
+
+## Testing
+
+Testing is done via the Java Gradle, which is located in `./src` and then the respective testing folder.
 
 ## License
 

@@ -3,8 +3,7 @@
 @Library("Infrastructure") _
 
 def product = "pip"
-def component = "publication-service-apim"
-
+def component = "data-management-apim"
 
 
 static Map<String, Object> secret(String secretName, String envVariable) {

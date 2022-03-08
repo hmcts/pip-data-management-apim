@@ -1,0 +1,8 @@
+{
+  "policies": [
+    {
+      "operationId": "get-publications-by-court-id",
+      "templateFile": "publication-get-by-court-id.xml"
+    }
+  ]
+}
