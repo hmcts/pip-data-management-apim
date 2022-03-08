@@ -1,0 +1,24 @@
+{
+  "policies": [
+    {
+      "operationId": "get-publications",
+      "templateFile": "pip-api-publications-get-policy.xml"
+    },
+    {
+      "operationId": "post-publications",
+      "templateFile": "pip-api-publications-create-policy.xml"
+    },
+    {
+      "operationId": "create-lists",
+      "templateFile": "pip-api-create-lists-policy.xml"
+    },
+    {
+      "operationId": "update-lists",
+      "templateFile": "pip-api-update-lists-policy.xml"
+    },
+    {
+      "operationId": "delete-lists",
+      "templateFile": "pip-api-delete-lists-policy.xml"
+    }
+  ]
+}
