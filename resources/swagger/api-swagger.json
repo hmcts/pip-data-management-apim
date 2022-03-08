@@ -1,143 +1,34 @@
 {
   "openapi": "3.0.1",
   "info": {
-      "title": "pip-apim-api",
-      "description": "",
+    "title": "pip-data-management-health-api",
+      "description": "Publication and Information Data Management APIM API",
       "version": "1.0"
   },
-  "servers": [
-      {
-          "url": "http://pip-apim-svc-sbox.azure-api.net/pip"
-      },
-      {
-          "url": "https://pip-apim-svc-sbox.azure-api.net/pip"
-      }
-  ],
+  "servers":[{
+    "url": "http://sds-api-mgmt-sbox.azure-api.net/pip-data-management-health"
+}, {
+    "url": "https://sds-api-mgmt-sbox.azure-api.net/pip-data-management-health"
+}],
   "paths": {
-      "/": {
-          "get": {
-              "tags": [
-                  "utils"
-              ],
-              "summary": "Health-Check",
-              "description": "Health-Check",
-              "operationId": "health-check",
-              "responses": {
-                  "200": {
-                      "description": "",
-                      "content": {
-                          "application/json": {
-                              "example": {
-                                  "status": "Up"
-                              }
-                          }
-                      }
-                  }
-              }
-          }
-      },
       "/publications": {
           "get": {
               "tags": [
                   "publications"
               ],
-              "summary": "Get Publications",
-              "description": "Get Publications",
-              "operationId": "get-publications",
+              "summary": "Get Publications by Court ID",
+              "description": "Get Publications by Court ID",
+              "operationId": "get-publications-by-court-id",
               "responses": {
                   "200": {
                       "description": "null"
                   }
               }
-          },
-          "post": {
-              "tags": [
-                  "publications"
-              ],
-              "summary": "Create Publications",
-              "description": "Create Publications",
-              "operationId": "post-publications",
-              "responses": {
-                  "201": {
-                      "description": "",
-                      "content": {
-                          "application/json": {
-                              "example": {
-                                  "response code": 201,
-                                  "description": "The request was received successfully."
-                              }
-                          }
-                      }
-                  }
-              }
           }
-      },
-      "/lists": {
-          "post": {
-              "tags": ["lists"],
-              "summary": "Create Lists",
-              "description": "Create Lists",
-              "operationId": "create-lists",
-              "responses": {
-                  "201": {
-                      "description": "",
-                      "content": {
-                          "application/json": {
-                              "example": {
-                                  "response code": 201,
-                                  "description": "The request was received successfully."
-                              }
-                          }
-                      }
-                  }
-              }
-          },
-          "put": {
-              "tags": ["lists"],
-              "summary": "Update Lists",
-              "description": "Update Lists",
-              "operationId": "update-lists",
-              "responses": {
-                  "204": {
-                      "description": "",
-                      "content": {
-                          "application/json": {
-                              "example": {
-                                  "response code": 204,
-                                  "description": "The request was received successfully."
-                              }
-                          }
-                      }
-                  }
-              }
-          },
-          "delete": {
-              "tags": ["lists"],
-              "summary": "Delete Lists",
-              "description": "Delete Lists",
-              "operationId": "delete-lists",
-              "responses": {
-                  "204": {
-                      "description": "",
-                      "content": {
-                          "application/json": {
-                              "example": {
-                                  "response code": 204,
-                                  "description": "The request was received successfully."
-                              }
-                          }
-                      }
-                  }
-              }
-          }            
-      }
+                }
   },
   "components": {},
   "tags": [
-      {
-          "name": "utils",
-          "description": "Utility endpoints"
-      },
       {
           "name": "publications",
           "description": "Publications endpoints"
