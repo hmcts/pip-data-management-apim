@@ -48,4 +48,3 @@ Testing is done via the Java Gradle, which is located in `./src` and then the re
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
-
